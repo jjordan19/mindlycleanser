@@ -19,3 +19,6 @@ def home_page():
 def show_user_profile(username):
     # show the user profile for that user
     return f'User {escape(username)}'
+
+if __name__ == "__main__":
+    app.run(host="10.0.0.14", port=5000, debug=True)
