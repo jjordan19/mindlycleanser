@@ -12,7 +12,7 @@ def login():
     return "login"
 
 @app.route("/")
-def mindlycleanser():
+def home_page():
     return render_template('index.html', welcome='Welcome, to my newly created app!')
 
 @app.route('/user/<username>')
