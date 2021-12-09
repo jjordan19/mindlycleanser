@@ -11,7 +11,10 @@ from bson import json_util
 app = Flask(__name__)
 
 # Create mindlycleaser database
-db = pymongo.MongoClient("mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb") # Connects to local MongoDB
+try:
+    db = pymongo.MongoClient("mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb") # Connects to local MongoDB
+except:
+    print("ERROR: Connection to MongoDB failed")
 
 database = db["mindlycleanser"]
 collection = database["quotes"]
@@ -19,7 +22,6 @@ collection = database["quotes"]
 @app.route("/")
 def home_page():
     return render_template('index.html', title="MindlyCleanser")
-    #return render_template('index2.html')
 
 # Create a quote using the REST API
 @app.route("/add/<int:quote_id>/<author>/<quote>/")
