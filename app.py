@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 import flask
 from markupsafe import escape
 import pymongo
@@ -14,7 +14,7 @@ app = Flask(__name__)
 try:
     db = pymongo.MongoClient("mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb") # Connects to local MongoDB
 except:
-    print("ERROR: Connection to MongoDB failed")
+    return "ERROR: Connection to MongoDB failed"
 
 database = db["mindlycleanser"]
 collection = database["quotes"]
