@@ -36,13 +36,23 @@ def add_quote(quote_id, author, quote):
             quote_id = len_total + 1
             collection.insert_one({"_id": f"{quote_id}", "author": f"{author}", "quote": f"{quote}"})    
         return flask.jsonify(message=f"New ID: {quote_id}")
- 
-    return flask.jsonify(message="success")
 
+# List quotes
 @app.route("/quotes")
 def get_quote():
     all_quotes = list(collection.find({}))
     return json.dumps(all_quotes)
+
+@app.route("/delete")
+def delete_quote():
+    return "delete something!"
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
