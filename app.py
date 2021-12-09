@@ -14,7 +14,7 @@ app = Flask(__name__)
 try:
     db = pymongo.MongoClient("mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb") # Connects to local MongoDB
 except:
-    return "ERROR: Connection to MongoDB failed"
+    print("ERROR: Connection to MongoDB failed")
 
 database = db["mindlycleanser"]
 collection = database["quotes"]
