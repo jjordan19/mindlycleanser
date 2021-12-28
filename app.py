@@ -21,7 +21,7 @@ collection = database["quotes"]
 
 @app.route("/")
 def home_page():
-    return render_template('index.html', title="MindlyCleanser")
+    return render_template('index.html', title="MindlyCleanser", all_quotes=list_quote())
 
 # Create a quote using the REST API
 @app.route("/add/<int:quote_id>/<author>/<quote>/")
@@ -41,21 +41,17 @@ def add_quote(quote_id, author, quote):
 
 # List quotes
 @app.route("/quotes")
-def get_quote():
+def list_quote():
     all_quotes = list(collection.find({}))
     return json.dumps(all_quotes)
+
+#def get_quote():
+#    search = collection.find({})
+    
 
 @app.route("/delete")
 def delete_quote():
     return "delete something!"
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     app.run(host="10.0.0.14", port=5000, debug=True)
