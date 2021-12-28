@@ -21,7 +21,7 @@ collection = database["quotes"]
 
 @app.route("/")
 def home_page():
-    return render_template('index.html', title="MindlyCleanser", all_quotes=list_quote())
+    return render_template('index.html', title="MindlyCleanser", all_quotes=list(collection.find({})))
 
 # Create a quote using the REST API
 @app.route("/add/<int:quote_id>/<author>/<quote>/")
@@ -43,7 +43,7 @@ def add_quote(quote_id, author, quote):
 @app.route("/quotes")
 def list_quote():
     all_quotes = list(collection.find({}))
-    return json.dumps(all_quotes)
+    return render_template("list_quotes.html", quotes=all_quotes)
 
 #def get_quote():
 #    search = collection.find({})
