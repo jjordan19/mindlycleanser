@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 import flask
 from markupsafe import escape
 import pymongo
@@ -43,15 +43,34 @@ def add_quote(quote_id, author, quote):
 @app.route("/quotes")
 def list_quote():
     all_quotes = list(collection.find({}))
-    return render_template("list_quotes.html", quotes=all_quotes)
+    return render_template("list_quotes.html", title="MindlyCleanser", quotes=all_quotes)
 
-#def get_quote():
-#    search = collection.find({})
-    
+@app.route("/add/", methods=["GET", "POST"])
+def add():
+    try:
+        if request.method == "POST":
+            id_num = request.form.get("quote_id")
+            quote = request.form.get("quote_adder")
+            author = request.form.get("author_adder")
+            query = { "_id" : id_num,"author" : author, "quote" : quote }
+            collection.insert(query)
+    except:
+        pass
+    return render_template("add_quotes_form.html", title="MindlyCleanser")
 
-@app.route("/delete")
-def delete_quote():
-    return "delete something!"
+@app.route("/delete", methods=["GET", "POST"])
+def delete():
+    try:
+        if request.method == "POST":
+       # getting input with name = fname in HTML form
+           id_number = request.form.get("query_id")
+       # getting input with name = lname in HTML form
+           query = { "_id" : id_number } 
+           collection.delete_one(query)
+    except:
+        pass
+    return render_template("delete.html", title="MindlyCleanser")
+
 
 if __name__ == "__main__":
     app.run(host="10.0.0.14", port=5000, debug=True)
