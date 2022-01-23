@@ -40,7 +40,7 @@ def add_quote(quote_id, author, quote):
         return flask.jsonify(message=f"New ID: {quote_id}")
 
 # List quotes
-@app.route("/quotes")
+@app.route("/quotes/")
 def list_quote():
     all_quotes = list(collection.find({}))
     return render_template("list_quotes.html", title="MindlyCleanser", quotes=all_quotes)
@@ -58,7 +58,7 @@ def add():
         pass
     return render_template("add_quotes_form.html", title="MindlyCleanser")
 
-@app.route("/delete", methods=["GET", "POST"])
+@app.route("/delete/", methods=["GET", "POST"])
 def delete():
     try:
         if request.method == "POST":
