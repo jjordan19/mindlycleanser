@@ -4,11 +4,13 @@ from markupsafe import escape
 import pymongo
 import json
 from bson import json_util
-
+from . import auth
 
 # Creates MongoDB connection between application and database.
 #db = pymongo.MongoClient("mongodb+srv://admin-python-test-app:QSzVf6aJw5XM6t1v@cluster0.vzhrl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 app = Flask(__name__)
+
+app.register_blueprint(auth.bp)
 
 # Create mindlycleaser database
 try:
