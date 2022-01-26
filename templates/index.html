@@ -116,7 +116,7 @@ q {font-style: italic;}
   display: block;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 2;
 }
 
 /* Add a grey background color on mouse-over */
@@ -140,7 +140,7 @@ q {font-style: italic;}
 
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<title> {{title}} </title>
 <div class="topnav">
   <a href="/" class="active">🧘🏾{{title}}🧘🏾</a>
   <!-- Navigation links (hidden by default) -->
@@ -148,6 +148,7 @@ q {font-style: italic;}
     <a href="/add">Add Quote</a>
     <a href="/delete">Delete Quote</a>
     <a href="/quotes">List Quotes</a>
+    <a href="/logout">Logout</a>
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -157,7 +158,7 @@ q {font-style: italic;}
 
 {% for quote in all_quotes %}
 	<div class="mySlides">
-		<q> {{quote.quote}}</q>
+		<q>{{quote.quote}}</q>
 		<p class="author">- {{quote.author}}</p>
 	</div>
 {% endfor %}
