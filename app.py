@@ -110,7 +110,7 @@ def logout():
         session.pop("username", None)
         return render_template("signout.html")
     else:
-        return render_template('login.html')
+        return render_template('register.html')
 
 # Create a quote using the REST API
 @app.route("/add/<int:quote_id>/<author>/<quote>/")
